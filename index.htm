@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turbo.az</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <div
+        id="navbar-top"
+        class="container py-2 d-none d-lg-flex justify-content-between opacity-75"
+      >
+        <ul class="d-flex m-0 p-0 gap-3">
+          <li>Tap.az</li>
+          <li>Bina.az</li>
+          <li>Boss.az</li>
+        </ul>
+        <ul class="d-flex m-0 p-0 gap-3">
+          <li>Dəstək: (012) 526-47-47</li>
+          <li>Yardım</li>
+          <li>RU</li>
+          <li onclick="window.location.href = 'secilmisler.htm'" class="secilmis-btn" >
+            <p style="cursor: pointer;" class="secilmis-btn mb-0"></p><i class="fa-solid fa-heart px-2" id="black-heart" ></i>Seçilmişlər</li>
+          <li><i class="fa-solid fa-user px-2"></i>Giriş</li>
+        </ul>
+      </div>
+      <nav class="navbar navbar-expand-lg bg-red">
+        <div class="container">
+          <a class="navbar-brand fw-bold text-white" href="index.htm">TURBO.AZ</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link active text-white"
+                  aria-current="page"
+                  href="#"
+                  >Bütün elanlar
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#">Dilerlər</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#">Avtokataloq</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Ehtiyat hissələr və aksesuarlar
+                </a>
+                <ul class="dropdown-menu" style="width: auto;">
+                  <li><a class="dropdown-item" href="#">Aksesuarlar</a></li>
+                  <li><a class="dropdown-item" href="#"> Audio və video texnika</a></li>
+                  <li><a class="dropdown-item" href="#">Avtokosmetika və avtokimya</a></li>
+                  <li><a class="dropdown-item" href="#">Ehtiyat hissələr</a></li>
+                  <li><a class="dropdown-item" href="#">GPS naviqatorlar</a></li>
+                  <li><a class="dropdown-item" href="#">Qeydiyyat nişanları</a></li>
+                  <li><a class="dropdown-item" href="#">Siqnalizasiyalar</a></li>
+                  <li><a class="dropdown-item" href="#">Videoqeydiyyatçılar</a></li>
+                  <li><a class="dropdown-item" href="#">Şinlər, disklər və təkərlər</a></li>
+                  <li><a class="dropdown-item" href="#">Digər</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  İcarə
+                </a>
+                <ul class="dropdown-menu" style="width: auto;">
+                  <li><a class="dropdown-item" href="#">Avtomobillər</a></li>
+                  <li><a class="dropdown-item" href="#"> Avtobus və mikroavtobuslar</a></li>
+                  <li><a class="dropdown-item" href="#">Motosiklet və mopedlər</a></li>
+                  <li><a class="dropdown-item" href="#">Xüsusi texnika</a></li>
+                  <li><a class="dropdown-item" href="#">Digər</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <button class="btn btn-lime text-white rounded-3" type="submit">
+                <div class="d-flex align-items-center justify-content-center">
+                  <i class="fa-regular fa-square-plus px-1 py-2"></i> <a href="yeni-elan.htm" class="text-white"> Yeni elan</a>
+                </div>
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div id="sort" class="py-3 bg-grey" >
+        <div class="container filter-container" >
+          
+            <div class="d-flex align-items-center justify-content-center gap-4"  >
+              <div class="input d-flex align-items-center">
+                <input
+                  id="marka"
+                  type="text"
+                  class="marka"
+                  oninput="searchMarka(this)"
+                  placeholder="Marka"
+                />
+                <div class="inputTitle">Marka</div>
+                <label for="marka">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </label>
+                <div class="dropdownInput">
+                  <p class="sifir" onclick="sifirla()" id="sifir">
+                    <i class="fa-solid fa-xmark"></i>Sifirla
+                  </p>
+                </div>
+              </div>
+  
+              <div class="input2 d-flex align-items-center">
+                <input
+                  id="model"
+                  type="text"
+                  class="model"
+                  oninput="searchModel(this)"
+                  placeholder="Model"
+                />
+                <div class="inputTitle2">Model</div>
+                <label for="model">
+                  <i class="fa-solid fa-chevron-down fa-chevron-2"></i>
+                </label>
+                <div class="dropdownInput2">
+                  <p class="sifir" onclick="sifirlaModel()" id="sifir">
+                    <i class="fa-solid fa-xmark"></i>Sifirla
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center"  style="width: 235px !important;">
+                <button
+                  onclick="veziyet(this)"
+                  class="border-0 btn-3 active-btn" 
+                  id="native-active-btn"
+                  style="
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                    background-color: white;
+                    color: #909194;
+                  "
+                >
+                  Hamısı
+                </button>
+                <button
+                  class="border-0 btn-3 yeni-surulmus"
+                  onclick="veziyet(this)"
+                  style="background-color: white; color: #909194; width: 85px !important;"
+                >
+                  Yeni
+                </button>
+                <button
+                  class="border-0 btn-3 surulmus"
+                  onclick="veziyet(this)"
+                  style="
+                    border-top-right-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    background-color: white;
+                    color: #909194;
+                  "
+                >
+                  Sürülmüş
+                </button>
+              </div>
+              <div class="input3 d-flex align-items-center">
+                <input
+                  id="city"
+                  oninput="searchCity()"
+                  type="text"
+                  class="city"
+                  placeholder="Şəhər"
+                />
+                <div class="inputTitle3">Şəhər</div>
+                <label for="city">
+                  <i class="fa-solid fa-chevron-down fa-chevron-3"></i>
+                </label>
+                <div class="dropdownInput3">
+                  <p class="sifir" onclick="sifirlaCity()" id="sifir">
+                    <i class="fa-solid fa-xmark"></i>Sifirla
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            
+         
+         
+          <div class="d-flex align-items-center justify-content-center gap-4 py-3" >
+            <div class="d-flex align-items-center">
+              <input
+                type="text"
+                id = "min-price"
+                class="btn-turbo"
+                placeholder="Qiymət, min."
+                style="border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                width: 117.5px;"
+              />
+              <input type="text" id = "max-price" placeholder="maks." class="btn-turbo" style="border-top-left-radius: 0;border-bottom-left-radius: 0;width: 117.5px; "  />
+           </div>
+          <div class="d-flex justify-content-center gap-3 align-items-center" style="width: 235px;">
+
+            <div class="inputCurrency d-flex align-items-center" >
+              <input
+              type="text"
+              class="currency"
+              value="AZN"
+            />
+            <label for="currency">
+              <i class="fa-solid fa-chevron-down fa-chevron-4"></i>
+            </label>
+            <div class="dropdownInputCurrency">
+              <p class="cars_option text-center" onclick="setCurr(this)">AZN</p>
+              <p class="cars_option text-center" onclick="setCurr(this)">USD</p>
+              <p class="cars_option text-center" onclick="setCurr(this)">EUR</p>
+            </div>
+          </div>
+          <div>
+            <button
+                class="border-0 kredit-btn rounded-2 btn-3"
+                onclick="setTerms(this)"
+                style="background-color: white;"
+              >
+                Kredit
+             </button>
+          </div>
+          <div>
+            <button
+                class="border-0 barter-btn rounded-2 btn-3"
+                onclick="setTerms(this)"
+                style="background-color: white;"
+              >
+                Barter
+             </button>
+          </div>
+          </div>
+          <div class="input5 d-flex align-items-center">
+            <input
+              id="ban"
+              oninput="searchBan()"
+              type="text"
+              class="ban"
+              placeholder="Ban növü"
+            />
+            <div class="inputTitle5">Ban növü</div>
+            <label for="ban">
+              <i class="fa-solid fa-chevron-down fa-chevron-5"></i>
+            </label>
+            <div class="dropdownInput5">
+              <p class="sifir" onclick="sifirlaBan()" id="sifir">
+                <i class="fa-solid fa-xmark"></i>Sifirla
+              </p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center align-items-center" style="width: 235px !important;">
+            <div class="input6 d-flex align-items-center">
+              <input
+              id="minIl"
+              type="text"
+              class="minIl"
+              placeholder="İl, min."
+              style="width: 117.5px !important;
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;"
+            />
+            <div class="inputTitle6"></div>
+            <label for="minIl">
+              <i class="fa-solid fa-chevron-down fa-chevron-min"></i>
+            </label>
+            <div class="dropdownInput6">
+              <p class="sifir" onclick="sifirlaIl(0)" id="sifir">
+                <i class="fa-solid fa-xmark"></i>Sifirla
+              </p>
+            </div>
+            </div>
+            <div class="input7 d-flex align-items-center">
+                <input
+                id="maxIl"
+                type="text"
+                class="maxIl"
+                placeholder="maks."
+                style="width: 117.5px !important;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;"
+              />
+              <div class="inputTitle7"></div>
+              <label for="maxIl">
+                <i class="fa-solid fa-chevron-down fa-chevron-max"></i>
+              </label>
+              <div class="dropdownInput7">
+                <p class="sifir" onclick="sifirlaIl(1)" id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="other-filters filters-hidden overflow-filters">
+          <div class="d-flex align-items-center justify-content-center gap-4">
+            <div class="inputCopy d-flex align-items-center">
+              <input
+                type="text"
+                class="copy"
+                placeholder="Rəng"
+              />
+              <div class="inputTitleCopy">Rəng</div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down"></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir" id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+            <div class="inputCopy d-flex align-items-center">
+              <input
+                type="text"
+                class="copy"
+                placeholder="Yanacaq növü"
+              />
+              <div class="inputTitleCopy">Yanacaq növü</div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down"></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir" id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+            <div class="inputCopy d-flex align-items-center">
+              <input
+                type="text"
+                class="copy"
+                placeholder="Ötürücü"
+              />
+              <div class="inputTitleCopy">Ötürücü</div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down"></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir" id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+            <div class="inputCopy d-flex align-items-center">
+              <input
+                type="text"
+                class="copy"
+                placeholder="Sürətlər qutusu"
+              />
+              <div class="inputTitleCopy">Sürətlər qutusu</div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down"></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir" id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-center gap-4 py-3">
+              <div class="d-flex">
+                <div class="inputCopy d-flex align-items-center">
+                  <input
+                    type="text"
+                    class="copy"
+                    placeholder="Həcm (sm³), min"
+                    style="border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                    width: 160px;"
+                  />
+                  <div class="inputTitleCopy">Sürətlər qutusu</div>
+                  <label for="copy">
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </label>
+                  <div class="dropdownInputCopy">
+                    <p class="sifir" id="sifir">
+                      <i class="fa-solid fa-xmark"></i>Sifirla
+                    </p>
+                  </div>
+                </div>
+                <div class="inputCopy d-flex align-items-center">
+                  <input
+                    type="text"
+                    class="copy"
+                    placeholder="maks."
+                    style="border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    width: 160px;"
+                  />
+                  <div class="inputTitleCopy">Sürətlər qutusu</div>
+                  <label for="copy">
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </label>
+                  <div class="dropdownInputCopy">
+                    <p class="sifir" id="sifir">
+                      <i class="fa-solid fa-xmark"></i>Sifirla
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="inputCopy d-flex align-items-center">
+                  <input
+                    type="text"
+                    class="copy"
+                    placeholder="Güc (a. g.), min"
+                    style="border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                    width: 162px;"
+                  />
+                  <div class="inputTitleCopy">Sürətlər qutusu</div>
+                  <label for="copy">
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </label>
+                  <div class="dropdownInputCopy">
+                    <p class="sifir" id="sifir">
+                      <i class="fa-solid fa-xmark"></i>Sifirla
+                    </p>
+                  </div>
+                </div>
+                <div class="inputCopy d-flex align-items-center">
+                  <input
+                    type="text"
+                    class="copy"
+                    placeholder="maks."
+                    style="border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    width: 160px;"
+                  />
+                  <div class="inputTitleCopy">Sürətlər qutusu</div>
+                  <label for="copy">
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </label>
+                  <div class="dropdownInputCopy">
+                    <p class="sifir" id="sifir">
+                      <i class="fa-solid fa-xmark"></i>Sifirla
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="inputCopy d-flex align-items-center">
+                  <input
+                    type="text"
+                    class="copy"
+                    placeholder="Yürüş (km), min"
+                    style="border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                    width: 162px;"
+                  />
+                  <div class="inputTitleCopy">Sürətlər qutusu</div>
+                  <label for="copy">
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </label>
+                  <div class="dropdownInputCopy">
+                    <p class="sifir" id="sifir">
+                      <i class="fa-solid fa-xmark"></i>Sifirla
+                    </p>
+                  </div>
+                </div>
+                <div class="inputCopy d-flex align-items-center">
+                  <input
+                    type="text"
+                    class="copy"
+                    placeholder="maks."
+                    style="border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    width: 162px;"
+                  />
+                  <div class="inputTitleCopy">Sürətlər qutusu</div>
+                  <label for="copy">
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </label>
+                  <div class="dropdownInputCopy">
+                    <p class="sifir" id="sifir">
+                      <i class="fa-solid fa-xmark"></i>Sifirla
+                    </p>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-center gap-4">
+            <div class="d-flex align-items-center justify-content-center"  style="width: 235px !important;">
+              <button
+                
+                class="border-0 btn-3 active-btn"
+                style="
+                  border-top-left-radius: 5px;
+                  border-bottom-left-radius: 5px;
+                  background-color: white;
+                  color: #909194;
+                "
+              >
+                Hamısı
+              </button>
+              <button
+                class="border-0 btn-3 yeni-surulmus"
+               
+                style="background-color: white; color: #909194; width: 85px !important; border-left: 1px solid #ccc;
+                border-right: 1px solid #ccc;"
+              >
+                Dilerler
+              </button>
+              <button
+                class="border-0 btn-3 surulmus"
+              
+                style="
+                  border-top-right-radius: 5px;
+                  border-bottom-right-radius: 5px;
+                  background-color: white;
+                  color: #909194;
+                  width: 100px!important;
+                "
+              >
+                Şəxsi
+              </button>
+            </div>
+            <div class="inputCopy d-flex align-items-center">
+              <input
+                type="text"
+                class="copy"
+                placeholder="Sahiblərin sayı"
+              />
+              <div class="inputTitleCopy">Yanacaq növü</div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down"></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir" id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+            <div class="inputCopy d-flex align-items-center">
+              <input
+                type="text"
+                class="copy"
+                placeholder="Yerlərin sayı"
+              />
+              <div class="inputTitleCopy">Ötürücü</div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down"></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir" id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+            <div class="inputCopy d-flex align-items-center">
+              <input
+                type="text"
+                class="copy"
+                placeholder="Hansı bazar üçün yığılıb"
+              />
+              <div class="inputTitleCopy">Sürətlər qutusu</div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down"></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir" id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="d-flex align-items-center justify-content-center gap-4 py-3">
+            
+              <div class="d-flex align-items-center justify-content-center gap-3"  style="width: 500px !important;">
+                <button
+                  
+                  class="border-0 btn-3 rounded-3"
+                  style="
+                    width: 200px !important;
+                    background-color: white;
+                    
+                  "
+                >
+                  Vuruğu yoxdur
+                </button>
+                <button
+                  class="border-0 btn-3 yeni-surulmus rounded-3"
+                 
+                  style="background-color: white;  width: 85px !important; border-left: 1px solid #ccc;
+                  border-right: 1px solid #ccc;
+                  width: 200px !important;"
+                >
+                  Rənglənməyib
+                </button>
+                <button
+                  class="border-0 btn-3 surulmus rounded-3"
+                
+                  style="
+                    width: 300px!important;
+                    background-color: white;
+                    
+                    
+                  "
+                >
+                  Yalnız qəzalı avtomobillər
+                </button>
+              </div>
+              <div class="inputCopy d-flex align-items-center">
+                <input
+                  type="text"
+                  class="copy"
+                  placeholder="Status"
+                />
+                <div class="inputTitleCopy">Sürətlər qutusu</div>
+                <label for="copy">
+                  <i class="fa-solid fa-chevron-down"></i>
+                </label>
+                <div class="dropdownInputCopy">
+                  <p class="sifir" id="sifir">
+                    <i class="fa-solid fa-xmark"></i>Sifirla
+                  </p>
+                </div>
+              </div>
+              
+            
+            
+            <div class="inputCopy d-flex align-items-center opacity-0">
+              <input
+                type="text"
+                class="copy"
+                placeholder="Status"
+              />
+              <div class="inputTitleCopy">Sürətlər qutusu</div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down"></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir" id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-start gap-4 mb-2 ">
+            <p class="mb-0">Avtomobilin təchizatı</p>
+            <hr style="width: 80%;border: 1px solid #999999;" />
+          </div>
+          <div class="d-flex align-items-center flex-wrap justify-content-start gap-2 ">
+            <button
+            class="border-0 btn-3 surulmus rounded-3"
+            style="
+              width: auto!important;
+              background-color: white;"
+          >
+            Yüngül lehimli disklər
+          </button>
+            <button
+            class="border-0 btn-3 surulmus rounded-3"
+            style="
+              width: auto!important;
+              background-color: white;"
+          >
+            ABS
+          </button>
+            <button
+            class="border-0 btn-3 surulmus rounded-3"
+            style="
+              width: auto!important;
+              background-color: white;"
+          >
+            Lyuk
+          </button>
+            <button
+            class="border-0 btn-3 surulmus rounded-3"
+            style="
+              width: auto!important;
+              background-color: white;"
+          >
+            Yağış sensoru
+          </button>
+            <button
+            class="border-0 btn-3 surulmus rounded-3"
+            style="
+              width: auto!important;
+              background-color: white;"
+          >
+            Mərkəzi qapanma
+          </button>
+            <button
+            class="border-0 btn-3 surulmus rounded-3"
+            style="
+              width: auto!important;
+              background-color: white;"
+          >
+            Mərkəzi qapanma
+          </button>
+            <button
+            class="border-0 btn-3 surulmus rounded-3"
+            style="
+              width: auto!important;
+              background-color: white;"
+          >
+          Park radarı
+          </button>
+          <button
+          class="border-0 btn-3 surulmus rounded-3"
+          style="
+            width: auto!important;
+            background-color: white;"
+        >
+        Kondisioner
+        </button>
+            <button
+            class="border-0 btn-3 surulmus rounded-3"
+            style="
+              width: auto!important;
+              background-color: white;"
+          >
+        Oturaclarin isidilmesi
+          </button>
+            <button
+            class="border-0 btn-3 surulmus rounded-3"
+            style="
+              width: auto!important;
+              background-color: white;"
+          >
+        Dəri salon  
+          </button>
+          <button
+          class="border-0 btn-3 surulmus rounded-3"
+          style="
+            width: auto!important;
+            background-color: white;"
+        >
+        Ksenon lampalar
+        </button>
+          <button
+          class="border-0 btn-3 surulmus rounded-3"
+          style="
+            width: auto!important;
+            background-color: white;"
+        >
+        Arxa görüntü kamerası
+        </button>
+          <button
+          class="border-0 btn-3 surulmus rounded-3"
+          style="
+            width: auto!important;
+            background-color: white;"
+        >
+          Yan pərdələr
+        </button>
+          <button
+          class="border-0 btn-3 surulmus rounded-3"
+          style="
+            width: auto!important;
+            background-color: white;"
+        >
+          Oturacların ventilasiyası
+        </button>
+          </div>
+        </div>
+        
+        
+        <div class="d-flex align-items-center justify-content-end gap-4 py-3 w-100"  >
+          <div class="w-100 d-flex align-items-center gap-4 justify-content-end" >
+            <div><p onclick="clearAll()" class="mb-0 opacity-75" style="cursor: pointer;">Sıfırla</p></div>
+            <div class="d-flex align-items-center gap-3" style="position: relative;"><p class="mb-0" onclick='showAll(this)' style="color: var(--main-red);cursor: pointer; margin-right: 5px">Daha çox filtr</p>
+              <i class="fa-solid fa-chevron-down fa-chevron-filter rotate-chevron"></i>
+            </div>
+            <button class='filter-btn ms-1' onclick="filterAll()">Elanları göstər</button>
+          </div>
+        
+        </div>
+
+        <div class="d-flex align-items-center justify-content-start">
+          <div class="d-flex gap-2 align-items-center">
+            <h5 class="fw-bold">Avtomobil almaq</h5> <span class="elan-sayisi opacity-50 mb-1"></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main style="background-color: #f6f7fa" class="py-3 py-lg-3">
+      <div class="container">
+        <div class="w-100 d-flex justify-content-end pb-3">
+          <select id="sortBy" style="width: 15%;">
+            <option value="az">A-Z</option>
+            <option value="za">Z-A</option>
+            <option value="ucuz">Əvvəl ucuz</option>
+            <option value="baha">Əvvəl baha</option>
+          </select>
+        </div>
+        <div class="row gap-3 car-container justify-content-center"></div>
+      </div>
+    </main>
+    
+    <footer>
+      <div
+        class="d-flex justify-content-between text-white align-items-center py-3"
+        style="background-color: var(--main-red)"
+      >
+        <div
+          class="container d-flex justify-content-between align-items-center"
+        >
+          <p class="w-50 mb-0">
+            Saytın Administrasiyası reklam bannerlərinin və yerləşdirilmiş
+            elanların məzmununa görə məsuliyyət daşımır.
+          </p>
+          <div class="d-flex justify-content-center gap-2">
+            <p class="mb-0">
+              2006-2025 Digital Classifieds MMC. VÖEN: 1405631661
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>

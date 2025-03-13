@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turbo.az</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header class="d-lg-none" style="background-color: #f6f7fa!important;">
+      <nav class="d-flex justify-content-between align-items-center bg-white py-3 px-4 border-bottom">
+        <ul class="d-flex ps-0 m-0 gap-3 d-flex justify-content-start">
+          <li class='fw-bold fs-5' style="color: var(--main-red);">TURBO.AZ</li>
+          <li class='fw-bold opacity-50 fs-5'>BINA.AZ</li>
+          <li class='fw-bold opacity-50 fs-5'>TAP.AZ</li>
+        </ul>
+        <i class="fa-solid fa-plus text-white rounded-5 p-2 me-2 d-flex align-items-center justify-content-center" style="background-color: var(--main-red);height: 30px; width:30px" onclick="yeniElanaKecid()"></i>
+      </nav>
+      <div  class="py-3 px-4" style="background-color: #f6f7fa;">
+        <div class="bg-white rounded-3 px-3">
+          <div class="input d-flex align-items-center py-2" style="width: 100%;">
+            <input
+              id="marka"
+              type="text"
+              class="marka border-0"
+              oninput="searchMarka(this)"
+              placeholder="Marka"
+            />
+            <div class="inputTitle">Marka</div>
+            <label for="marka">
+              <i class="fa-solid fa-chevron-down fs-5"></i>
+            </label>
+            <div class="dropdownInput d-none">
+              <p class="sifir" onclick="sifirla()" >
+                <i class="fa-solid fa-xmark"></i>Sifirla
+              </p>
+            </div>
+          </div>
+          <hr class="m-0 " id="hr">
+          <div class="input2 d-flex align-items-center py-2" style="width: 100%;">
+            <input
+              id="model"
+              type="text"
+              class="model border-0"
+              placeholder="Model"
+              oninput="searchModel(this)"
+            />
+            <div class="inputTitle2">Model</div>
+            <label for="model">
+              <i class="fa-solid fa-chevron-down fa-chevron-2 fs-5"></i>
+            </label>
+            <div class="dropdownInput2">
+              <p class="sifir" onclick="sifirlaModel()" >
+                <i class="fa-solid fa-xmark"></i>Sifirla
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex mt-3 px-2 gap-2" >
+          <div class="bg-white rounded-5 px-3 py-2" onclick="showFilters()">
+            <div class="d-flex align-items-center gap-2" >
+              <i class="fa-solid fa-arrow-up-wide-short" style="color: var(--main-red);"></i> <p class="mb-0">Filtrlər</p>
+            </div> 
+          </div>
+          
+          <div class="bg-white rounded-5 px-3 py-2">
+            <div class="d-flex align-items-center gap-2">
+              <i class="fa-solid fa-arrow-right-arrow-left" style="color: var(--main-red);"></i> <p class="mb-0">Tarixə görə</p>
+            </div> 
+          </div>
+        </div>
+      </div>
+      
+    </header>
+
+    
+    <div id="filter-menu" class="d-none">
+      <div  onclick='filterAndGoBack()' class='mx-3 p-3 d-flex justify-content-center vw-100 text-white rounded-3' style="position: fixed; bottom: 20px; background-color: var(--main-red); z-index: 999999999999!important;"><p class="mb-0">Axtar</p></div>
+      <div
+      class="d-flex justify-content-center border-bottom pb-3 bg-white"
+      style="position: relative"
+    >
+      <p class="mb-0 fw-semibold fs-5  mt-3">Filtrlər</p>
+      <i
+        onclick="filterAndGoBack()"
+        class="fa-solid fa-chevron-left mt-3 fs-5 "
+        style="position: absolute; top: 15px; left: 20px"
+      ></i>
+      <p class="mb-0 mt-3" onclick="clearAll()" style="position: absolute; top: 3px; right: 20px; color: var(--main-red);">Sıfırla</p>
+    </div>
+      <div class="input3 d-flex align-items-center w-100 border-bottom py-2 px-3 bg-white">
+        <input
+          id="city"
+          oninput="searchCity()"
+          type="text"
+          class="city border-0"
+          placeholder="Şəhər"
+        />
+        <div class="inputTitle3">Şəhər</div>
+        <label for="city">
+          <i class="fa-solid fa-chevron-down fa-chevron-3"></i>
+        </label>
+        <div class="dropdownInput3 vw-100">
+          <p class="sifir" onclick="sifirlaCity()" id="sifir">
+            <i class="fa-solid fa-xmark"></i>Sifirla
+          </p>
+        </div>
+      </div>
+      <div class="my-3">
+        <div class="d-flex align-items-center justify-content-center px-3"  style="width: 100% !important;">
+          <button
+            onclick="veziyet(this)"
+            class="border-0 btn-3 active-btn"
+            id="native-active-btn"
+            style="
+              border-top-left-radius: 10px;
+              border-bottom-left-radius: 10px;
+              background-color: white;
+              color: #909194;
+              width: 33%!important;
+            "
+          >
+            Hamısı
+          </button>
+          <button
+            class="border-0 btn-3 yeni-surulmus"
+            onclick="veziyet(this)"
+            style="background-color: white; color: #909194; width: 85px !important; width: 33%!important;"
+          >
+            Yeni
+          </button>
+          <button
+            class="border-0 btn-3 surulmus"
+            onclick="veziyet(this)"
+            style="
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              background-color: white;
+              color: #909194;
+              width: 33%!important;
+            "
+          >
+            Sürülmüş
+          </button>
+        </div>
+      </div>
+      <div class="bg-white px-2">
+        <div class="input5 d-flex align-items-center w-100 border-bottom py-2 bg-white">
+          <input
+            id="ban"
+            oninput="searchBan()"
+            type="text"
+            class="ban border-0"
+            placeholder="Ban növü"
+          />
+          <div class="inputTitle5">Ban növü</div>
+          <label for="ban">
+            <i class="fa-solid fa-chevron-down fa-chevron-5"></i>
+          </label>
+          <div class="dropdownInput5 vw-100">
+            <p class="sifir" onclick="sifirlaBan()" id="sifir">
+              <i class="fa-solid fa-xmark"></i>Sifirla
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <p class="mb-1 pt-1 px-2 opacity-75">İl</p>
+          <div class="d-flex justify-content-center align-items-center w-100 bg-white gap-4">
+            <div class="input6 d-flex align-items-center border-bottom w-50">
+              <input
+              id="minIl"
+              type="text"
+              class="minIl w-50 border-0 pt-0"
+              placeholder="min."
+              
+            />
+            <div class="inputTitle6"></div>
+            <label for="minIl">
+              <i class="fa-solid fa-chevron-down fa-chevron-min opacity-0"></i>
+            </label>
+            <div class="dropdownInput6">
+              <p class="sifir" onclick="sifirlaIl(0)" id="sifir">
+                <i class="fa-solid fa-xmark"></i>Sifirla
+              </p>
+            </div>
+            </div>
+            <div class="input7 d-flex align-items-center border-bottom w-50">
+                <input
+                id="maxIl"
+                type="text"
+                class="maxIl w-50 border-0 pt-0"
+                placeholder="maks."
+                
+              />
+              <div class="inputTitle7"></div>
+              <label for="maxIl">
+                <i class="fa-solid fa-chevron-down fa-chevron-max opacity-0" ></i>
+              </label>
+              <div class="dropdownInput7">
+                <p class="sifir" onclick="sifirlaIl(1)" id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-1 pt-1 px-2 opacity-75">Yürüş, km</p>
+          <div class="d-flex justify-content-center align-items-center w-100 bg-white gap-4">
+            <div class="inputCopy d-flex align-items-center border-bottom w-50">
+              <input
+              
+              type="text"
+              class="copy w-50 border-0 pt-0"
+              placeholder="min."
+              
+            />
+            <div class="inputTitleCopy"></div>
+            <label for="copy">
+              <i class="fa-solid fa-chevron-down opacity-0"></i>
+            </label>
+            <div class="dropdownInputCopy">
+              <p class="sifir"  id="sifir">
+                <i class="fa-solid fa-xmark"></i>Sifirla
+              </p>
+            </div>
+            </div>
+            <div class="inputCopy d-flex align-items-center border-bottom w-50">
+                <input
+                
+                type="text"
+                class="copy w-50 border-0 pt-0"
+                placeholder="maks."
+                
+              />
+              <div class="inputTitleCopy"></div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down opacity-0" ></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir"  id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-1 pt-1 px-2 opacity-75">Mühərrikin həcmi, sm<sup>3</sup></p>
+          <div class="d-flex justify-content-center align-items-center w-100 bg-white gap-4">
+            <div class="inputCopy d-flex align-items-center border-bottom w-50">
+              <input
+              
+              type="text"
+              class="copy w-50 border-0 pt-0"
+              placeholder="min."
+              
+            />
+            <div class="inputTitleCopy"></div>
+            <label for="copy">
+              <i class="fa-solid fa-chevron-down opacity-0"></i>
+            </label>
+            <div class="dropdownInputCopy">
+              <p class="sifir"  id="sifir">
+                <i class="fa-solid fa-xmark"></i>Sifirla
+              </p>
+            </div>
+            </div>
+            <div class="inputCopy d-flex align-items-center border-bottom w-50">
+                <input
+                
+                type="text"
+                class="copy w-50 border-0 pt-0"
+                placeholder="maks."
+                
+              />
+              <div class="inputTitleCopy"></div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down opacity-0" ></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir"  id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="mb-1 pt-1 px-2 opacity-75">Mühərrikin gücü, a.g</p>
+          <div class="d-flex justify-content-center align-items-center w-100 bg-white gap-4">
+            <div class="inputCopy d-flex align-items-center border-bottom w-50">
+              <input
+              
+              type="text"
+              class="copy w-50 border-0 pt-0"
+              placeholder="min."
+              
+            />
+            <div class="inputTitleCopy"></div>
+            <label for="copy">
+              <i class="fa-solid fa-chevron-down opacity-0"></i>
+            </label>
+            <div class="dropdownInputCopy">
+              <p class="sifir"  id="sifir">
+                <i class="fa-solid fa-xmark"></i>Sifirla
+              </p>
+            </div>
+            </div>
+            <div class="inputCopy d-flex align-items-center border-bottom w-50">
+                <input
+                
+                type="text"
+                class="copy w-50 border-0 pt-0"
+                placeholder="maks."
+                
+              />
+              <div class="inputTitleCopy"></div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down opacity-0" ></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir"  id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="inputCopy d-flex align-items-center w-100 border-bottom py-2 bg-white">
+          <input
+            
+            
+            type="text"
+            class="copy border-0"
+            placeholder="Rəng"
+          />
+          <div class="inputTitleCopy">Rəng</div>
+          <label for="copy">
+            <i class="fa-solid fa-chevron-down"></i>
+          </label>
+          <div class="dropdownInputCopy vw-100">
+            <p class="sifir" id="sifir">
+              <i class="fa-solid fa-xmark"></i>Sifirla
+            </p>
+          </div>
+        </div>
+        <div class="inputCopy d-flex align-items-center w-100 border-bottom py-2 bg-white">
+          <input
+            
+            
+            type="text"
+            class="copy border-0"
+            placeholder="Hansı bazar üçün yığılıb"
+          />
+          <div class="inputTitleCopy">Hansı bazar üçün yığılıb</div>
+          <label for="copy">
+            <i class="fa-solid fa-chevron-down"></i>
+          </label>
+          <div class="dropdownInputCopy vw-100">
+            <p class="sifir" id="sifir">
+              <i class="fa-solid fa-xmark"></i>Sifirla
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white px-2 my-3">
+        <div>
+          <p class="mb-1 pt-1 px-2 opacity-75">Qiymət</p>
+          <div class="d-flex justify-content-center align-items-center w-100 bg-white gap-4">
+            <div class="inputCopy d-flex align-items-center border-bottom w-50">
+              <input
+              id='min-price'
+              type="text"
+              class="copy w-50 border-0 pt-0"
+              placeholder="min."
+              
+            />
+            <div class="inputTitleCopy"></div>
+            <label for="copy">
+              <i class="fa-solid fa-chevron-down opacity-0"></i>
+            </label>
+            <div class="dropdownInputCopy">
+              <p class="sifir"  id="sifir">
+                <i class="fa-solid fa-xmark"></i>Sifirla
+              </p>
+            </div>
+            </div>
+            <div class="inputCopy d-flex align-items-center border-bottom w-50">
+                <input
+                id='max-price'
+                type="text"
+                class="copy w-50 border-0 pt-0"
+                placeholder="maks."
+                
+              />
+              <div class="inputTitleCopy"></div>
+              <label for="copy">
+                <i class="fa-solid fa-chevron-down opacity-0" ></i>
+              </label>
+              <div class="dropdownInputCopy">
+                <p class="sifir"  id="sifir">
+                  <i class="fa-solid fa-xmark"></i>Sifirla
+                </p>
+              </div>
+            </div>
+              <div class="inputCurrency d-flex align-items-center border-bottom mb-3" >
+                <input
+                type="text"
+                class="currency border-0 "
+                
+                value="AZN"
+              />
+              <label for="currency">
+                <i class="fa-solid fa-chevron-down fa-chevron-4"></i>
+              </label>
+              <div class="dropdownInputCurrency">
+                <p class="cars_option text-center" onclick="setCurr(this)">AZN</p>
+                <p class="cars_option text-center" onclick="setCurr(this)">USD</p>
+                <p class="cars_option text-center" onclick="setCurr(this)">EUR</p>
+              </div>
+            </div>
+              
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 pb-3">
+          <div>
+            <button
+                class="border-1 kredit-btn rounded-2 btn-3 px-3 "
+                onclick="setTerms(this)"
+                style="background-color: white;"
+              >
+                Kredit
+             </button>
+          </div>
+          <div>
+            <button
+                class="border-1 barter-btn rounded-2 btn-3 px-3"
+                onclick="setTerms(this)"
+                style="background-color: white;"
+              >
+                Barter
+             </button>
+          </div>
+        </div>
+      </div>
+      <div class="my-3">
+        <div class="d-flex align-items-center justify-content-center px-3"  style="width: 100% !important;">
+          <button
+            class="border-0 btn-3"
+            style="
+              border-top-left-radius: 10px;
+              border-bottom-left-radius: 10px;
+              background-color: var(--main-red);
+              color: #ffffff;
+              width: 33%!important;
+            "
+          >
+            Hamısı
+          </button>
+          <button
+            class="border-0 btn-3"
+            style="background-color: white; color: #909194; width: 85px !important; width: 33%!important;"
+          >
+            Dilerlər
+          </button>
+          <button
+            class="border-0 btn-3 "
+            style="
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              background-color: white;
+              color: #909194;
+              width: 33%!important;
+            "
+          >
+            Şəxsi
+          </button>
+        </div>
+      </div>
+      <div class="bg-white px-3 py-3 mb-3">
+        <p class="mb-0 pb-2" style="color: #9a9c9d;">Status <span class="ms-2 btn-lime text-white px-2  rounded-4" style="font-size: 12px;">yeni</span></p>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn text-white"
+              style=" background-color: var(--main-red);"
+            >
+              Vacib deyil
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Benzin
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Dizel
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white px-3 py-3 mb-3">
+        <p class="mb-0 opacity-50 pb-2">Yanacaq növü </p>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn text-white"
+              style=" background-color: var(--main-red);"
+            >
+              Vacib deyil
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Benzin
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Dizel
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Qaz
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Elektro
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Hibrid
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Plug-in Hibrid
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Hidrogen
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white px-3 py-3 mb-3">
+        <p class="mb-0 opacity-50 pb-2">Ötürücü</p>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn text-white"
+              style=" background-color: var(--main-red);"
+            >
+              Vacib deyil
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Arxa
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Ön
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Tam
+            </button>
+          </div>
+         
+        </div>
+      </div>
+      <div class="bg-white px-3 py-3 mb-3">
+        <p class="mb-0 opacity-50 pb-2">Sürətlər qutusu</p>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn text-white"
+              style=" background-color: var(--main-red);"
+            >
+              Vacib deyil
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Avtomat
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Variator
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Mexaniki
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Robot
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Reduktor
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white px-3 py-3 mb-3">
+        <p class="mb-0 opacity-50 pb-2">Yerlərin sayı</p>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              1
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              2
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              3
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              4
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              5
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              5
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              6
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              7
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              8+
+            </button>
+          </div>
+       
+        </div>
+      </div>
+      <div class="bg-white px-3 py-3 mb-3">
+        <p class="mb-0 opacity-50 pb-2">Avtomobilin təchizatı</p>
+        <div class="d-flex flex-wrap gap-2">
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Yüngül lehimli disklər
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              ABS
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Lyuk
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Yağış sensoru
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Mərkəzi qapanma
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Park radarı
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Kondisioner
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Oturacaqların isidilməsi
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Dəri salon
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Ksenon lampalar
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Arxa görüntü kamerası
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Yan pərdələr
+            </button>
+          </div>
+          <div class="d-flex py-2">
+            <button
+              class="rounded-3 btn"
+              style="border: 1px solid rgb(171, 171, 171)"
+            >
+              Oturacaqların ventilyasiyası
+            </button>
+          </div>
+        </div>
+        </div>
+
+        <div class="bg-white px-3 py-3 mb-3">
+          <p class="mb-0 opacity-50 pb-2">Vəziyyəti</p>
+          <div class="d-flex flex-wrap gap-2">
+            <div class="d-flex py-2">
+              <button
+                class="rounded-3 btn text-black"
+                style=" border: 1px solid rgb(171, 171, 171)"
+              >
+                Vuruğü yoxdur
+              </button>
+            </div>
+            <div class="d-flex py-2">
+              <button
+                class="rounded-3 btn"
+                style="border: 1px solid rgb(171, 171, 171)"
+              >
+                Rənglənməyib
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white px-3 py-3 mb-3">
+          <h6>Qəzalı və ya ehtiyat hissələr üçün</h6>
+          <p class="mb-0 opacity-50 pb-2">Təmirə ehtiyacı var və ya ümumiyyətlə yararsız vəziyyətdədir.</p>
+         
+        </div>
+        <div class="bg-white px-3 py-3 mb-3">
+          <p class="mb-0 opacity-50 pb-2">Sahiblərinin sayı</p>
+          <div class="d-flex flex-wrap gap-2">
+            <div class="d-flex py-2">
+              <button
+                class="rounded-3 btn text-black"
+                style=" border: 1px solid rgb(171, 171, 171)"
+              >
+                1
+              </button>
+            </div>
+            <div class="d-flex py-2">
+              <button
+                class="rounded-3 btn"
+                style="border: 1px solid rgb(171, 171, 171)"
+              >
+                2
+              </button>
+            </div>
+            <div class="d-flex py-2">
+              <button
+                class="rounded-3 btn"
+                style="border: 1px solid rgb(171, 171, 171)"
+              >
+                3
+              </button>
+            </div>
+            <div class="d-flex py-2">
+              <button
+                class="rounded-3 btn"
+                style="border: 1px solid rgb(171, 171, 171)"
+              >
+                4 və daha çox
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+    <div id="menu" class="border-top">
+      <div class="py-3 px-4 d-flex justify-content-between">
+        <div class="d-flex flex-column gap-2 justify-content-center align-items-center">
+          <i class="fa-solid fa-house fs-5" style="color: var(--main-red);"></i>
+          <p class="mb-0 fw-semibold" style="color: var(--main-red); font-size: 12px;">ƏSAS</p>
+        </div>
+        <div class="d-flex flex-column gap-2  justify-content-center align-items-center opacity-50" onclick="window.location.href='secilmisler.htm'">
+          <i class="fa-solid fa-heart fs-5" id="black-heart" ></i>
+          <p class="mb-0 fw-semibold" style="font-size: 12px;">SEÇİLMİŞLƏR</p>
+        </div>
+        <div class="d-flex flex-column gap-2  justify-content-center align-items-center">
+          <i class="fa-solid fa-plus text-white rounded-5 p-2 fs-3 d-flex align-items-center justify-content-center" style="background-color: var(--main-red);height: 50px; width:50px; position: absolute; bottom: 45px;" onclick="yeniElanaKecid()"></i>
+          <p class="mb-0 fw-semibold opacity-50" style="font-size: 12px; padding-top: 29px;">YENİ ELAN</p>
+        </div>
+        <div class="d-flex flex-column gap-2 justify-content-center align-items-center opacity-50">
+          <i class="fa-solid fa-circle-user fs-5"></i>
+          <p class="mb-0 fw-semibold" style="font-size: 12px;">KABİNET</p>
+        </div>
+        <div class="d-flex flex-column gap-2 justify-content-center align-items-center opacity-50">
+          <i class="fa-solid fa-bars fs-5"></i>
+          <p class="mb-0 fw-semibold" style="font-size: 12px;">DAHA ÇOX</p>
+        </div>
+      </div>
+    </div>
+      
+
+
+    </div>
+
+
+    <main style="background-color: #f6f7fa" class="py-3 py-lg-5">
+      <div class="container">
+        <div class="row gap-3 car-container justify-content-center mb-5 pb-4"></div>
+      </div>
+    </main>
+    
+
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script-m.js"></script>
+  </body>
+</html>
